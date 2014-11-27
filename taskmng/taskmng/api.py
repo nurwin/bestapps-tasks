@@ -4,22 +4,16 @@ from tastypie.resources import ModelResource
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie import fields
 from tastypie.authentication import BasicAuthentication
-from tastypie.authorization import Authorization
+from tastypie.authorization import Authorization, DjangoAuthorization
 
 from taskmng.models import *
 
 class UserResource(ModelResource):
 	class Meta:
 		queryset = User.objects.all()
-		authorization = Authorization()
-
-class GroupResource(ModelResource):
-	user = fields.ForeignKey(UserResource, 'user')
-    
-	class Meta:
-		queryset = Group.objects.all()
-		resource_name = 'group'
-		authorization = Authorization()
+		authorization = DjangoAuthorization()
+		authentication = BasicAuthentication()
+		fields = ['id', 'username', 'first_name', 'last_name', 'last_login', 'email', 'is_staff', 'is_superuser']
 
 class TaskScheduleResource(ModelResource):
 	class Meta:

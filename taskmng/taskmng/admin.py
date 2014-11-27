@@ -8,5 +8,13 @@ from taskmng.models import *
 
 class TaskScheduleAdmin(admin.ModelAdmin):
     list_display = ('task_schedule_name',)
+    
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ('task_name',)
+    
+class UserTaskAdmin(admin.ModelAdmin):
+    list_display = ('user','task')
 
 admin.site.register(TaskSchedule, TaskScheduleAdmin)
+admin.site.register(Task, TaskAdmin)
+admin.site.register(UserTask, UserTaskAdmin)
