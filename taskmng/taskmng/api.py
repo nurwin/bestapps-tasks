@@ -22,7 +22,7 @@ class CORSResource(object):
     def create_response(self, *args, **kwargs):
         response = super(CORSResource, self).create_response(*args, **kwargs)
         response['Access-Control-Allow-Origin'] = '*'
-        response['Access-Control-Allow-Headers'] = 'Content-Type'
+        response['Access-Control-Allow-Headers'] = '*'
 
         return response
 
@@ -36,7 +36,7 @@ class CORSResource(object):
         if request_method == 'options':
             response = HttpResponse(allows)
             response['Access-Control-Allow-Origin'] = '*'
-            response['Access-Control-Allow-Headers'] = 'Content-Type'
+            response['Access-Control-Allow-Headers'] = '*'
             response['Allow'] = allows
             raise ImmediateHttpResponse(response=response)
 

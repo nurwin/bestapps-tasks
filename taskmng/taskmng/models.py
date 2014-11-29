@@ -39,8 +39,10 @@ class Attachment(models.Model):
 class UserTask(models.Model):
 	TASK_STATUS = (
         ('D', 'Done'),
-        ('V', 'Verified'),
+        ('R', 'Rejected'),
+        ('A', 'Accepted'),
     )
 	user = models.ForeignKey(User)
 	task = models.ForeignKey(Task)
 	usertask_status = models.CharField(blank=True, null=True, max_length=1, choices=TASK_STATUS)
+	usertask_note = models.TextField(blank=True, null=True)

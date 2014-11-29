@@ -41,6 +41,7 @@ INSTALLED_APPS = (
 
     'tastypie',
     'push_notifications',
+    'grappelli',
 )
 
 PUSH_NOTIFICATIONS_SETTINGS = {
@@ -57,6 +58,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
 )
 
 ROOT_URLCONF = 'taskmng.urls'
@@ -94,5 +99,7 @@ MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+STATIC_ROOT = '%s/static/' % BASE_DIR
 
 STATIC_URL = '/static/'

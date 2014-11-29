@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     (r'^api/', include(v1_api.urls)),
 )
