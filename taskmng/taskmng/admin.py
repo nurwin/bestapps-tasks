@@ -6,8 +6,8 @@ from django.core.urlresolvers import reverse
 
 from taskmng.models import *
 
-class TaskScheduleAdmin(admin.ModelAdmin):
-    list_display = ('task_schedule_name',)
+class TaskCategoryAdmin(admin.ModelAdmin):
+    list_display = ('task_category_name',)
     
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('task_name',)
@@ -15,6 +15,6 @@ class TaskAdmin(admin.ModelAdmin):
 class UserTaskAdmin(admin.ModelAdmin):
     list_display = ('user','task')
 
-admin.site.register(TaskSchedule, TaskScheduleAdmin)
+admin.site.register(TaskCategory, TaskCategoryAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(UserTask, UserTaskAdmin)

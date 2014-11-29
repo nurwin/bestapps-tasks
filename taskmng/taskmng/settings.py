@@ -40,7 +40,14 @@ INSTALLED_APPS = (
     'taskmng',
 
     'tastypie',
+    'push_notifications',
 )
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+    "GCM_API_KEY": "AIzaSyAJIC9alaZlHFoReSB4Kd0fawfN287r7Gg",
+    "GCM_POST_URL": "https://android.googleapis.com/gcm/send",
+    "GCM_MAX_RECIPIENTS": 1000,
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

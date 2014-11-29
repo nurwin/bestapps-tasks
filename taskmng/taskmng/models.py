@@ -2,24 +2,25 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class TaskSchedule(models.Model):
-	task_schedule_name = models.CharField(max_length=50)
-
-	def __unicode__(self):
-		return self.task_schedule_name
-
-class Task(models.Model):
-	TASK_CATEGORY = (
+class TaskCategory(models.Model):
+	TASK_TYPE = (
 		('S', 'Schedule'),
 		('I', 'Incidental'),
 	)
-	task_schedule = models.ForeignKey(TaskSchedule, blank=True, null=True)
+
+	task_category_name = models.CharField(max_length=50)
+	task_category_type = models.CharField(max_length=1, choices=TASK_TYPE)
+	task_category_start_time = models.DateTimeField()
+	task_category_end_time = models.DateTimeField()
+
+	def __unicode__(self):
+		return self.task_category_name
+
+class Task(models.Model):
+	task_category = models.ForeignKey(TaskCategory, blank=True, null=True)
 	task_name = models.CharField(max_length=128)
-	task_category = models.CharField(max_length=1, choices=TASK_CATEGORY)
 	task_description = models.TextField()
 	task_manual = models.TextField(blank=True, null=True)
-	task_start_datetime = models.DateTimeField()
-	task_end_datetime = models.DateTimeField()
 	task_note = models.TextField(blank=True, null=True)
 
 	def __unicode__(self):

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 from django.conf.urls import url
 from django.http import HttpResponse
-
 from tastypie import fields
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ModelResource
@@ -137,15 +136,15 @@ class UserResource(CORSResource, ModelResource):
 		else:
 			return self.create_response(request, { 'success': False }, HttpUnauthorized)
 
-class TaskScheduleResource(CORSResource, ModelResource):
+class TaskCategoryResource(CORSResource, ModelResource):
 	class Meta:
-		queryset = TaskSchedule.objects.all()
-		resource_name = 'task_schedule'
+		queryset = TaskCategory.objects.all()
+		resource_name = 'task_category'
 		authorization = DjangoAuthorization()
 		authentication = BasicAuthentication()
 
 class TaskResource(ModelResource):
-	task_schedule = fields.ForeignKey(TaskScheduleResource, 'task_schedule', full=True, null=True)
+	task_category = fields.ForeignKey(TaskCategoryResource, 'task_category', full=True, null=True)
 
 	def dehydrate_task_category(self, bundle):
 		return bundle.obj.get_task_category_display()
@@ -156,7 +155,7 @@ class TaskResource(ModelResource):
 		authorization = DjangoAuthorization()
 		authentication = BasicAuthentication()
 		filtering = {
-			'task_schedule':ALL,
+			'task_category':ALL,
 			'task_name' :ALL,
 			'task_category' :ALL,
 
